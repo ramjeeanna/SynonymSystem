@@ -9,7 +9,7 @@ import functools
 class SynonymSystem(Resource):
 
     def get(self, inword=None):
-        """Retrieve user details"""
+        
         engine = db.engine  # Get the engine used by db.Model
         print(engine.pool.status())  # Check connection pool usage
 
@@ -47,7 +47,7 @@ class SynonymSystem(Resource):
         return jsonify(response)
 
     def post(self):
-        """Create a new user"""
+        
         data = request.json
         print("received data is ", data)
         word = data.get("word", None)
@@ -62,7 +62,7 @@ class SynonymSystem(Resource):
             return jsonify({"error": "data is incomplete .. word or synonym not resent"})
 
     def put(self, inword):
-        """Update user details"""
+        
         data = request.json  # Get JSON data from request
         old_value = data.get("old_synonym")
         new_value = data.get("new_synonym")
@@ -77,7 +77,7 @@ class SynonymSystem(Resource):
             return jsonify({"message": f"Combination {inword} and value {old_value} not found"})
 
     def delete(self, inword=None):
-        """Delete a user"""
+        
         if inword:
             words = Dictionary.query.filter(Dictionary.word.like(f"%{inword}%"))  # Fetch entry by ID
             print(jsonify([word.to_dict() for word in words]))
