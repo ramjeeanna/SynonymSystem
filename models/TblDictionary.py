@@ -1,7 +1,7 @@
 from app.extensions import db
 
 class Dictionary(db.Model):
-    __tablename__ = 'Dictionary'  # Define the SQL Server table name
+    __tablename__ = 'Dictionary' 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     word = db.Column(db.String(500), nullable=False)
     synonym = db.Column(db.String(500), unique=True, nullable=False)
